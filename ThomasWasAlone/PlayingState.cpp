@@ -70,6 +70,8 @@ void PlayingState::update(float dt, Engine& engine) {
 
 // Draw the graphics on the screen.
 void PlayingState::draw(sf::RenderWindow& window, Engine& engine) {
+    
+    // Clear the last frame
     window.clear(sf::Color::White);
 
     // Update the shader parameters
@@ -90,14 +92,17 @@ void PlayingState::draw(sf::RenderWindow& window, Engine& engine) {
         // Draw the level
         window.draw(engine.getLevelVertexArray(), &engine.getTextureTiles());
 
-        // Draw Thomas and Bob
-        window.draw(engine.getThomas().getSprite());
-
-        window.draw(engine.getBob().getSprite());
-
-        window.draw(engine.getSophie().getSprite());
-
-
+        // Draw characters only if they are active in each level
+        if (engine.getThomas().isActive()) {
+            window.draw(engine.getThomas().getSprite());
+        }
+        if (engine.getBob().isActive()) {
+            window.draw(engine.getBob().getSprite());
+        }
+        if (engine.getSophie().isActive()) {
+            window.draw(engine.getSophie().getSprite());
+        }
+        
         if (engine.getParticleSystem().running()) {
             window.draw(engine.getParticleSystem());
         }
@@ -114,9 +119,16 @@ void PlayingState::draw(sf::RenderWindow& window, Engine& engine) {
 
         window.draw(engine.getLevelVertexArray(), &engine.getTextureTiles());
 
-        window.draw(engine.getBob().getSprite());
-
-        window.draw(engine.getThomas().getSprite());
+        // Draw characters only if they are active in each level
+        if (engine.getThomas().isActive()) {
+            window.draw(engine.getThomas().getSprite());
+        }
+        if (engine.getBob().isActive()) {
+            window.draw(engine.getBob().getSprite());
+        }
+        if (engine.getSophie().isActive()) {
+            window.draw(engine.getSophie().getSprite());
+        }
 
         if (engine.getParticleSystem().running()) {
             window.draw(engine.getParticleSystem());
@@ -129,21 +141,28 @@ void PlayingState::draw(sf::RenderWindow& window, Engine& engine) {
         window.setView(engine.getRightView());
 
         window.draw(engine.getLevelVertexArray(), &engine.getTextureTiles());
-
-        window.draw(engine.getThomas().getSprite());
-
-        window.draw(engine.getBob().getSprite());
+       
+        // Draw characters only if they are active in each level
+        if (engine.getThomas().isActive()) {
+            window.draw(engine.getThomas().getSprite());
+        }
+        if (engine.getBob().isActive()) {
+            window.draw(engine.getBob().getSprite());
+        }
+        if (engine.getSophie().isActive()) {
+            window.draw(engine.getSophie().getSprite());
+        }
 
         if (engine.getParticleSystem().running()) {
             window.draw(engine.getParticleSystem());
         }
     }
 
-
     // Draw the HUD
     window.setView(engine.getHudView());
     window.draw(engine.getHud().getLevel());
     window.draw(engine.getHud().getTime());
+
     if (!engine.isPlaying()) {
         window.draw(engine.getHud().getMessage());
     }

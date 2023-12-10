@@ -30,28 +30,36 @@ void Engine::loadLevel()
 
 void Engine::setupCharactersForLevel(int level, const Vector2f& startPosition)
 {
-    // Determine which characters to spawn based on the current level
+    // Deactivate all characters initially
+    m_Thomas.deactivate();
+    m_Bob.deactivate();
+    m_Sophie.deactivate();
+
+    // Activate and spawn characters based on the current level
     switch (level)
     {
     case 1:
-        m_Thomas.spawn(startPosition, GRAVITY);
-        m_Bob.spawn(startPosition, GRAVITY);
+        activateCharacters(m_Thomas, m_Sophie, startPosition);
         break;
     case 2:
-        m_Thomas.spawn(startPosition, GRAVITY);
-        m_Sophie.spawn(startPosition, GRAVITY);
+        activateCharacters(m_Thomas, m_Bob, startPosition);
         break;
     case 3:
-        m_Bob.spawn(startPosition, GRAVITY);
-        m_Sophie.spawn(startPosition, GRAVITY);
+        activateCharacters(m_Bob, m_Sophie, startPosition);
         break;
     case 4:
-        m_Bob.spawn(startPosition, GRAVITY);
-        m_Thomas.spawn(startPosition, GRAVITY);
+        activateCharacters(m_Bob, m_Thomas, startPosition);
         break;
     case 5:
-        m_Bob.spawn(startPosition, GRAVITY);
-        m_Sophie.spawn(startPosition, GRAVITY);
+        activateCharacters(m_Bob, m_Sophie, startPosition);
         break;
     }
+}
+
+void Engine::activateCharacters(PlayableCharacter& char1, PlayableCharacter& char2, const Vector2f& startPosition)
+{
+    char1.spawn(startPosition, GRAVITY);
+    char1.activate();
+    char2.spawn(startPosition, GRAVITY);
+    char2.activate();
 }

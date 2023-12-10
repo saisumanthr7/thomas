@@ -9,5 +9,4 @@ public:
 
 	// The overriden input handler for Thomas
 	bool virtual handleInput();
-
 };

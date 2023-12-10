@@ -61,6 +61,9 @@ private:
 	// And a texture
 	Texture m_Texture;
 
+	// New member variable to track activation state
+	bool m_IsActive;
+
 	std::vector<std::shared_ptr<Observer>> observers;
 
 	// All our public functions will come next
@@ -103,4 +106,11 @@ public:
 
 	// Handle the higher jump for the rubber tile
 	void jumpHigher();
+
+	// Method to activate the character
+	void activate();
+
+	bool isActive() const;
+
+	void deactivate();
 };

@@ -12,6 +12,7 @@ void PlayableCharacter::spawn(Vector2f startPosition, float gravity)
 	// Move the sprite in to position
 	m_Sprite.setPosition(m_Position);
 
+	m_IsActive = false;
 }
 
 void PlayableCharacter::update(float elapsedTime)
@@ -200,5 +201,17 @@ void PlayableCharacter::jumpHigher()
 		m_TimeThisJump = 0;
 		m_Gravity = RUBBER_TILE_JUMP_GRAVITY; 
 	}
+}
+
+void PlayableCharacter::activate() {
+	m_IsActive = true;
+}
+
+bool PlayableCharacter::isActive() const {
+	return m_IsActive;
+}
+
+void PlayableCharacter::deactivate() {
+	m_IsActive = false;
 }
 

@@ -11,8 +11,8 @@ Sophie::Sophie() {
 bool Sophie::handleInput() {
     m_JustJumped = false;
 
-    // Handle jumping logic here
-    // You can modify this to react to the rubber tile
+    // Start a jump if not already jumping
+    // but only if standing on a block (not falling)
     if (Keyboard::isKeyPressed(Keyboard::I)) {
         if (!m_IsJumping && !m_IsFalling) {
             m_IsJumping = true;
@@ -43,5 +43,8 @@ bool Sophie::handleInput() {
     {
         m_RightPressed = false;
     }
+
     return m_JustJumped;
 }
+
+
